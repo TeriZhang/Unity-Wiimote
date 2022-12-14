@@ -72,6 +72,7 @@ public class WiimoteManager
             bool fin = false;
             foreach (Wiimote r in Wiimotes)
             {
+                    Debug.Log("found wiimote");
                 if (fin)
                     continue;
 

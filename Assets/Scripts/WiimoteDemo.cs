@@ -14,20 +14,31 @@ public class WiimoteDemo : MonoBehaviour {
 
     private Quaternion initial_rotation;
 
+    [SerializeField]
     private Wiimote wiimote;
+    
 
     private Vector2 scrollPosition;
 
     private Vector3 wmpOffset = Vector3.zero;
 
+    //test
+    public Vector3 pointdirection;
+    public Transform crossHair;
+    Camera cam;
+    public Vector3 worldPos;
+
     void Start() {
+        WiimoteManager.FindWiimotes();
         initial_rotation = model.rot.localRotation;
+        cam = GetComponent<Camera>();
     }
 
 	void Update () {
         if (!WiimoteManager.HasWiimote()) { return; }
 
         wiimote = WiimoteManager.Wiimotes[0];
+        wiimote.SendDataReportMode(InputDataType.REPORT_BUTTONS_ACCEL);
 
         int ret;
         do
@@ -38,6 +49,7 @@ public class WiimoteDemo : MonoBehaviour {
                 Vector3 offset = new Vector3(  -wiimote.MotionPlus.PitchSpeed,
                                                 wiimote.MotionPlus.YawSpeed,
                                                 wiimote.MotionPlus.RollSpeed) / 95f; // Divide by 95Hz (average updates per second from wiimote)
+                Debug.Log(offset);
                 wmpOffset += offset;
 
                 model.rot.Rotate(offset, Space.Self);
@@ -89,7 +101,33 @@ public class WiimoteDemo : MonoBehaviour {
         float[] pointer = wiimote.Ir.GetPointingPosition();
         ir_pointer.anchorMin = new Vector2(pointer[0], pointer[1]);
         ir_pointer.anchorMax = new Vector2(pointer[0], pointer[1]);
-	}
+
+        RaycastHit target;
+        Vector3 rayStart = transform.position;
+        Vector3 rayDir = (model.rot.position + model.rot.rotation * GetAccelVector() * 2).normalized;
+
+        if (Physics.Raycast(model.rot.position, rayDir, out target, Mathf.Infinity))
+        {
+            if (target.collider.CompareTag("Enemy"))
+            {
+                Debug.Log(target.collider.name);
+                if (wiimote.Button.b == true)
+                {
+                    Debug.Log("isShooting");
+                    target.transform.GetComponent<Enemy>().takedamage(40);
+                }
+            }
+            worldPos = target.point;
+            crossHair.transform.position = cam.WorldToScreenPoint(worldPos);
+            
+            Debug.DrawRay(model.rot.position, rayDir*10000, Color.yellow);
+
+        }
+        else
+        {
+
+        }
+    }
 
     void OnGUI()
     {
@@ -299,6 +337,7 @@ public class WiimoteDemo : MonoBehaviour {
         accel_y = -accel[2];
         accel_z = -accel[1];
 
+        pointdirection = new Vector3(accel_x, accel_y, accel_z).normalized;
         return new Vector3(accel_x, accel_y, accel_z).normalized;
     }
 
