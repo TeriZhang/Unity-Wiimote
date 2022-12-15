@@ -19,5 +19,10 @@ public class WaterSliderScript : MonoBehaviour
     {
         mySlider.value = remainingWater;
         myTwin.value = remainingWater;
+
+        if(remainingWater > 100)
+        {
+            remainingWater = 100;
+        }
     }
 }

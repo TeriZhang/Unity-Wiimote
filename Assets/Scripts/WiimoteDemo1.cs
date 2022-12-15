@@ -112,194 +112,194 @@ public class WiimoteDemo1 : MonoBehaviour {
         
     }
 
-    void OnGUI()
-    {
-        GUI.Box(new Rect(0,0,320,Screen.height), "");
+   // void OnGUI()
+   // {
+   //     GUI.Box(new Rect(0,0,320,Screen.height), "");
 
-        GUILayout.BeginVertical(GUILayout.Width(300));
-        GUILayout.Label("Wiimote Found: " + WiimoteManager.HasWiimote());
-        if (GUILayout.Button("Find Wiimote"))
-            WiimoteManager.FindWiimotes();
+   //     GUILayout.BeginVertical(GUILayout.Width(300));
+   //     GUILayout.Label("Wiimote Found: " + WiimoteManager.HasWiimote());
+   //     if (GUILayout.Button("Find Wiimote"))
+   //         WiimoteManager.FindWiimotes();
 
-        if (GUILayout.Button("Cleanup"))
-        {
-            WiimoteManager.Cleanup(wiimote2);
-            wiimote2 = null;
-        }
+   //     if (GUILayout.Button("Cleanup"))
+   //     {
+   //         WiimoteManager.Cleanup(wiimote2);
+   //         wiimote2 = null;
+   //     }
 
-        if (wiimote2 == null)
-            return;
+   //     if (wiimote2 == null)
+   //         return;
 
-        GUILayout.Label("Extension: " + wiimote2.current_ext.ToString());
+   //     GUILayout.Label("Extension: " + wiimote2.current_ext.ToString());
 
-        GUILayout.Label("LED Test:");
-        GUILayout.BeginHorizontal();
-        for (int x = 0; x < 4;x++ )
-            if (GUILayout.Button(""+x, GUILayout.Width(300/4)))
-                wiimote2.SendPlayerLED(x == 0, x == 1, x == 2, x == 3);
-        GUILayout.EndHorizontal();
+   //     GUILayout.Label("LED Test:");
+   //     GUILayout.BeginHorizontal();
+   //     for (int x = 0; x < 4;x++ )
+   //         if (GUILayout.Button(""+x, GUILayout.Width(300/4)))
+   //             wiimote2.SendPlayerLED(x == 0, x == 1, x == 2, x == 3);
+   //     GUILayout.EndHorizontal();
 
-        GUILayout.Label("Set Report:");
-        GUILayout.BeginHorizontal();
-        if(GUILayout.Button("But/Acc", GUILayout.Width(300/4)))
-            wiimote2.SendDataReportMode(InputDataType.REPORT_BUTTONS_ACCEL);
-        if(GUILayout.Button("But/Ext8", GUILayout.Width(300/4)))
-            wiimote2.SendDataReportMode(InputDataType.REPORT_BUTTONS_EXT8);
-        if(GUILayout.Button("B/A/Ext16", GUILayout.Width(300/4)))
-            wiimote2.SendDataReportMode(InputDataType.REPORT_BUTTONS_ACCEL_EXT16);
-        if(GUILayout.Button("Ext21", GUILayout.Width(300/4)))
-            wiimote2.SendDataReportMode(InputDataType.REPORT_EXT21);
-        GUILayout.EndHorizontal();
+   //     GUILayout.Label("Set Report:");
+   //     GUILayout.BeginHorizontal();
+   //     if(GUILayout.Button("But/Acc", GUILayout.Width(300/4)))
+   //         wiimote2.SendDataReportMode(InputDataType.REPORT_BUTTONS_ACCEL);
+   //     if(GUILayout.Button("But/Ext8", GUILayout.Width(300/4)))
+   //         wiimote2.SendDataReportMode(InputDataType.REPORT_BUTTONS_EXT8);
+   //     if(GUILayout.Button("B/A/Ext16", GUILayout.Width(300/4)))
+   //         wiimote2.SendDataReportMode(InputDataType.REPORT_BUTTONS_ACCEL_EXT16);
+   //     if(GUILayout.Button("Ext21", GUILayout.Width(300/4)))
+   //         wiimote2.SendDataReportMode(InputDataType.REPORT_EXT21);
+   //     GUILayout.EndHorizontal();
 
-        if (GUILayout.Button("Request Status Report"))
-            wiimote2.SendStatusInfoRequest();
+   //     if (GUILayout.Button("Request Status Report"))
+   //         wiimote2.SendStatusInfoRequest();
 
-        GUILayout.Label("IR Setup Sequence:");
-        GUILayout.BeginHorizontal();
-        if(GUILayout.Button("Basic", GUILayout.Width(100)))
-            wiimote2.SetupIRCamera(IRDataType.BASIC);
-        if(GUILayout.Button("Extended", GUILayout.Width(100)))
-            wiimote2.SetupIRCamera(IRDataType.EXTENDED);
-        if(GUILayout.Button("Full", GUILayout.Width(100)))
-            wiimote2.SetupIRCamera(IRDataType.FULL);
-        GUILayout.EndHorizontal();
+   //     GUILayout.Label("IR Setup Sequence:");
+   //     GUILayout.BeginHorizontal();
+   //     if(GUILayout.Button("Basic", GUILayout.Width(100)))
+   //         wiimote2.SetupIRCamera(IRDataType.BASIC);
+   //     if(GUILayout.Button("Extended", GUILayout.Width(100)))
+   //         wiimote2.SetupIRCamera(IRDataType.EXTENDED);
+   //     if(GUILayout.Button("Full", GUILayout.Width(100)))
+   //         wiimote2.SetupIRCamera(IRDataType.FULL);
+   //     GUILayout.EndHorizontal();
 
-        GUILayout.Label("WMP Attached: " + wiimote2.wmp_attached);
-        if (GUILayout.Button("Request Identify WMP"))
-            wiimote2.RequestIdentifyWiiMotionPlus();
-        if ((wiimote2.wmp_attached || wiimote2.Type == WiimoteType.PROCONTROLLER) && GUILayout.Button("Activate WMP"))
-            wiimote2.ActivateWiiMotionPlus();
-        if ((wiimote2.current_ext == ExtensionController.MOTIONPLUS ||
-            wiimote2.current_ext == ExtensionController.MOTIONPLUS_CLASSIC ||
-            wiimote2.current_ext == ExtensionController.MOTIONPLUS_NUNCHUCK) && GUILayout.Button("Deactivate WMP"))
-            wiimote2.DeactivateWiiMotionPlus();
+   //     GUILayout.Label("WMP Attached: " + wiimote2.wmp_attached);
+   //     if (GUILayout.Button("Request Identify WMP"))
+   //         wiimote2.RequestIdentifyWiiMotionPlus();
+   //     if ((wiimote2.wmp_attached || wiimote2.Type == WiimoteType.PROCONTROLLER) && GUILayout.Button("Activate WMP"))
+   //         wiimote2.ActivateWiiMotionPlus();
+   //     if ((wiimote2.current_ext == ExtensionController.MOTIONPLUS ||
+   //         wiimote2.current_ext == ExtensionController.MOTIONPLUS_CLASSIC ||
+   //         wiimote2.current_ext == ExtensionController.MOTIONPLUS_NUNCHUCK) && GUILayout.Button("Deactivate WMP"))
+   //         wiimote2.DeactivateWiiMotionPlus();
 
-        GUILayout.Label("Calibrate Accelerometer");
-        GUILayout.BeginHorizontal();
-        for (int x = 0; x < 3; x++)
-        {
-            AccelCalibrationStep step = (AccelCalibrationStep)x;
-            if (GUILayout.Button(step.ToString(), GUILayout.Width(100)))
-                wiimote2.Accel.CalibrateAccel(step);
-        }
-        GUILayout.EndHorizontal();
+   //     GUILayout.Label("Calibrate Accelerometer");
+   //     GUILayout.BeginHorizontal();
+   //     for (int x = 0; x < 3; x++)
+   //     {
+   //         AccelCalibrationStep step = (AccelCalibrationStep)x;
+   //         if (GUILayout.Button(step.ToString(), GUILayout.Width(100)))
+   //             wiimote2.Accel.CalibrateAccel(step);
+   //     }
+   //     GUILayout.EndHorizontal();
 
-        if (GUILayout.Button("Print Calibration Data"))
-        {
-            StringBuilder str = new StringBuilder();
-            for (int x = 0; x < 3; x++)
-            {
-                for (int y = 0; y < 3; y++)
-                {
-                    str.Append(wiimote2.Accel.accel_calib[y, x]).Append(" ");
-                }
-                str.Append("\n");
-            }
-            Debug.Log(str.ToString());
-        }
+   //     if (GUILayout.Button("Print Calibration Data"))
+   //     {
+   //         StringBuilder str = new StringBuilder();
+   //         for (int x = 0; x < 3; x++)
+   //         {
+   //             for (int y = 0; y < 3; y++)
+   //             {
+   //                 str.Append(wiimote2.Accel.accel_calib[y, x]).Append(" ");
+   //             }
+   //             str.Append("\n");
+   //         }
+   //         Debug.Log(str.ToString());
+   //     }
 
-        if (wiimote2 != null && wiimote2.current_ext != ExtensionController.NONE)
-        {
-            scrollPosition = GUILayout.BeginScrollView(scrollPosition);
-            GUIStyle bold = new GUIStyle(GUI.skin.button);
-            bold.fontStyle = FontStyle.Bold;
-            if (wiimote2.current_ext == ExtensionController.NUNCHUCK) {
-                GUILayout.Label("Nunchuck:", bold);
-                NunchuckData data = wiimote2.Nunchuck;
-                GUILayout.Label("Stick: " + data.stick[0] + ", " + data.stick[1]);
-                GUILayout.Label("C: " + data.c);
-                GUILayout.Label("Z: " + data.z);
-            } else if (wiimote2.current_ext == ExtensionController.CLASSIC) {
-                GUILayout.Label("Classic Controller:", bold);
-                ClassicControllerData data = wiimote2.ClassicController;
-                GUILayout.Label("Stick Left: " + data.lstick[0] + ", " + data.lstick[1]);
-                GUILayout.Label("Stick Right: " + data.rstick[0] + ", " + data.rstick[1]);
-                GUILayout.Label("Trigger Left: " + data.ltrigger_range);
-                GUILayout.Label("Trigger Right: " + data.rtrigger_range);
-                GUILayout.Label("Trigger Left Button: " + data.ltrigger_switch);
-                GUILayout.Label("Trigger Right Button: " + data.rtrigger_switch);
-                GUILayout.Label("A: " + data.a);
-                GUILayout.Label("B: " + data.b);
-                GUILayout.Label("X: " + data.x);
-                GUILayout.Label("Y: " + data.y);
-                GUILayout.Label("Plus: " + data.plus);
-                GUILayout.Label("Minus: " + data.minus);
-                GUILayout.Label("Home: " + data.home);
-                GUILayout.Label("ZL: " + data.zl);
-                GUILayout.Label("ZR: " + data.zr);
-                GUILayout.Label("D-Up: " + data.dpad_up);
-                GUILayout.Label("D-Down: " + data.dpad_down);
-                GUILayout.Label("D-Left: " + data.dpad_left);
-                GUILayout.Label("D-Right: " + data.dpad_right);
-            }
-            else if (wiimote2.current_ext == ExtensionController.MOTIONPLUS)
-            {
-                GUILayout.Label("Wii Motion Plus:", bold);
-                MotionPlusData data = wiimote2.MotionPlus;
-                GUILayout.Label("Pitch Speed: " + data.PitchSpeed);
-                GUILayout.Label("Yaw Speed: " + data.YawSpeed);
-                GUILayout.Label("Roll Speed: " + data.RollSpeed);
-                GUILayout.Label("Pitch Slow: " + data.PitchSlow);
-                GUILayout.Label("Yaw Slow: " + data.YawSlow);
-                GUILayout.Label("Roll Slow: " + data.RollSlow);
-                if (GUILayout.Button("Zero Out WMP"))
-                {
-                    data.SetZeroValues();
-                    model.rot.rotation = Quaternion.FromToRotation(model.rot.rotation*GetAccelVector(), Vector3.up) * model.rot.rotation;
-                    model.rot.rotation = Quaternion.FromToRotation(model.rot.forward, Vector3.forward) * model.rot.rotation;
-                }
-                if(GUILayout.Button("Reset Offset"))
-                    wmpOffset = Vector3.zero;
-                GUILayout.Label("Offset: " + wmpOffset.ToString());
-            }
-            else if (wiimote2.current_ext == ExtensionController.WIIU_PRO)
-            {
-                GUILayout.Label("Wii U Pro Controller:", bold);
-                WiiUProData data = wiimote2.WiiUPro;
-                GUILayout.Label("Stick Left: "+data.lstick[0]+", "+data.lstick[1]);
-                GUILayout.Label("Stick Right: "+data.rstick[0]+", "+data.rstick[1]);
-                GUILayout.Label("A: "+data.a);
-                GUILayout.Label("B: "+data.b);
-                GUILayout.Label("X: "+data.x);
-                GUILayout.Label("Y: "+data.y);
+   //     if (wiimote2 != null && wiimote2.current_ext != ExtensionController.NONE)
+   //     {
+   //         scrollPosition = GUILayout.BeginScrollView(scrollPosition);
+   //         GUIStyle bold = new GUIStyle(GUI.skin.button);
+   //         bold.fontStyle = FontStyle.Bold;
+   //         if (wiimote2.current_ext == ExtensionController.NUNCHUCK) {
+   //             GUILayout.Label("Nunchuck:", bold);
+   //             NunchuckData data = wiimote2.Nunchuck;
+   //             GUILayout.Label("Stick: " + data.stick[0] + ", " + data.stick[1]);
+   //             GUILayout.Label("C: " + data.c);
+   //             GUILayout.Label("Z: " + data.z);
+   //         } else if (wiimote2.current_ext == ExtensionController.CLASSIC) {
+   //             GUILayout.Label("Classic Controller:", bold);
+   //             ClassicControllerData data = wiimote2.ClassicController;
+   //             GUILayout.Label("Stick Left: " + data.lstick[0] + ", " + data.lstick[1]);
+   //             GUILayout.Label("Stick Right: " + data.rstick[0] + ", " + data.rstick[1]);
+   //             GUILayout.Label("Trigger Left: " + data.ltrigger_range);
+   //             GUILayout.Label("Trigger Right: " + data.rtrigger_range);
+   //             GUILayout.Label("Trigger Left Button: " + data.ltrigger_switch);
+   //             GUILayout.Label("Trigger Right Button: " + data.rtrigger_switch);
+   //             GUILayout.Label("A: " + data.a);
+   //             GUILayout.Label("B: " + data.b);
+   //             GUILayout.Label("X: " + data.x);
+   //             GUILayout.Label("Y: " + data.y);
+   //             GUILayout.Label("Plus: " + data.plus);
+   //             GUILayout.Label("Minus: " + data.minus);
+   //             GUILayout.Label("Home: " + data.home);
+   //             GUILayout.Label("ZL: " + data.zl);
+   //             GUILayout.Label("ZR: " + data.zr);
+   //             GUILayout.Label("D-Up: " + data.dpad_up);
+   //             GUILayout.Label("D-Down: " + data.dpad_down);
+   //             GUILayout.Label("D-Left: " + data.dpad_left);
+   //             GUILayout.Label("D-Right: " + data.dpad_right);
+   //         }
+   //         else if (wiimote2.current_ext == ExtensionController.MOTIONPLUS)
+   //         {
+   //             GUILayout.Label("Wii Motion Plus:", bold);
+   //             MotionPlusData data = wiimote2.MotionPlus;
+   //             GUILayout.Label("Pitch Speed: " + data.PitchSpeed);
+   //             GUILayout.Label("Yaw Speed: " + data.YawSpeed);
+   //             GUILayout.Label("Roll Speed: " + data.RollSpeed);
+   //             GUILayout.Label("Pitch Slow: " + data.PitchSlow);
+   //             GUILayout.Label("Yaw Slow: " + data.YawSlow);
+   //             GUILayout.Label("Roll Slow: " + data.RollSlow);
+   //             if (GUILayout.Button("Zero Out WMP"))
+   //             {
+   //                 data.SetZeroValues();
+   //                 model.rot.rotation = Quaternion.FromToRotation(model.rot.rotation*GetAccelVector(), Vector3.up) * model.rot.rotation;
+   //                 model.rot.rotation = Quaternion.FromToRotation(model.rot.forward, Vector3.forward) * model.rot.rotation;
+   //             }
+   //             if(GUILayout.Button("Reset Offset"))
+   //                 wmpOffset = Vector3.zero;
+   //             GUILayout.Label("Offset: " + wmpOffset.ToString());
+   //         }
+   //         else if (wiimote2.current_ext == ExtensionController.WIIU_PRO)
+   //         {
+   //             GUILayout.Label("Wii U Pro Controller:", bold);
+   //             WiiUProData data = wiimote2.WiiUPro;
+   //             GUILayout.Label("Stick Left: "+data.lstick[0]+", "+data.lstick[1]);
+   //             GUILayout.Label("Stick Right: "+data.rstick[0]+", "+data.rstick[1]);
+   //             GUILayout.Label("A: "+data.a);
+   //             GUILayout.Label("B: "+data.b);
+   //             GUILayout.Label("X: "+data.x);
+   //             GUILayout.Label("Y: "+data.y);
 
-                GUILayout.Label("D-Up: "   +data.dpad_up);
-                GUILayout.Label("D-Down: " +data.dpad_down);
-                GUILayout.Label("D-Left: " +data.dpad_left);
-                GUILayout.Label("D-Right: "+data.dpad_right);
+   //             GUILayout.Label("D-Up: "   +data.dpad_up);
+   //             GUILayout.Label("D-Down: " +data.dpad_down);
+   //             GUILayout.Label("D-Left: " +data.dpad_left);
+   //             GUILayout.Label("D-Right: "+data.dpad_right);
 
-                GUILayout.Label("Plus: "+data.plus);
-                GUILayout.Label("Minus: "+data.minus);
-                GUILayout.Label("Home: "+data.home);
+   //             GUILayout.Label("Plus: "+data.plus);
+   //             GUILayout.Label("Minus: "+data.minus);
+   //             GUILayout.Label("Home: "+data.home);
 
-                GUILayout.Label("L: "+data.l);
-                GUILayout.Label("R: "+data.r);
-                GUILayout.Label("ZL: "+data.zl);
-                GUILayout.Label("ZR: "+data.zr);
-            }
-			else if (wiimote2.current_ext == ExtensionController.GUITAR) {
-				GUILayout.Label ("Guitar", bold);
-				GuitarData data = wiimote2.Guitar;
-				float[] stick = data.GetStick01 ();
-				GUILayout.Label ("Stick: " + stick [0] + ", " + stick [1]);
-				GUILayout.Label ("Slider: " + (data.has_slider ? Convert.ToString (data.GetSlider01 ()) : "unsupported"));
-				GUILayout.Label ("Green: " + data.green);
-				GUILayout.Label ("Red: " + data.red);
-				GUILayout.Label ("Yellow: " + data.yellow);
-				GUILayout.Label ("Blue: " + data.blue);
-				GUILayout.Label ("Orange: " + data.orange);
-				GUILayout.Label ("Strum Up: " + data.strum_up);
-				GUILayout.Label ("Strum Down: " + data.strum_down);
-				GUILayout.Label ("Minus: " + data.minus);
-				GUILayout.Label ("Plus: " + data.plus);
-				GUILayout.Label ("Whammy: " + data.GetWhammy01());
-			}
-            GUILayout.EndScrollView();
-        } else {
-            scrollPosition = Vector2.zero;
-        }
-        GUILayout.EndVertical();
-    }
+   //             GUILayout.Label("L: "+data.l);
+   //             GUILayout.Label("R: "+data.r);
+   //             GUILayout.Label("ZL: "+data.zl);
+   //             GUILayout.Label("ZR: "+data.zr);
+   //         }
+			//else if (wiimote2.current_ext == ExtensionController.GUITAR) {
+			//	GUILayout.Label ("Guitar", bold);
+			//	GuitarData data = wiimote2.Guitar;
+			//	float[] stick = data.GetStick01 ();
+			//	GUILayout.Label ("Stick: " + stick [0] + ", " + stick [1]);
+			//	GUILayout.Label ("Slider: " + (data.has_slider ? Convert.ToString (data.GetSlider01 ()) : "unsupported"));
+			//	GUILayout.Label ("Green: " + data.green);
+			//	GUILayout.Label ("Red: " + data.red);
+			//	GUILayout.Label ("Yellow: " + data.yellow);
+			//	GUILayout.Label ("Blue: " + data.blue);
+			//	GUILayout.Label ("Orange: " + data.orange);
+			//	GUILayout.Label ("Strum Up: " + data.strum_up);
+			//	GUILayout.Label ("Strum Down: " + data.strum_down);
+			//	GUILayout.Label ("Minus: " + data.minus);
+			//	GUILayout.Label ("Plus: " + data.plus);
+			//	GUILayout.Label ("Whammy: " + data.GetWhammy01());
+			//}
+   //         GUILayout.EndScrollView();
+   //     } else {
+   //         scrollPosition = Vector2.zero;
+   //     }
+   //     GUILayout.EndVertical();
+   // }
 
     void OnDrawGizmos()
     {

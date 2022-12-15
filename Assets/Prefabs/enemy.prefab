@@ -50,7 +50,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   myTransform: {fileID: 0}
-  moveSpeed: 40
+  moveSpeed: 50
   self: {fileID: 7659366592063450002}
   animator: {fileID: 7659366591829535266}
   HP: 100

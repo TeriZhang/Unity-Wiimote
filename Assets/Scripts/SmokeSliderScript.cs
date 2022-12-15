@@ -16,7 +16,7 @@ public class SmokeSliderScript : MonoBehaviour
         smokeLevel = mySlider.minValue;
         maxSmoke = mySlider.maxValue;
         mySlider = GetComponent<Slider>();
-        mySlider.maxValue = 100f;
+        mySlider.maxValue = 500f;
 
 
     }
