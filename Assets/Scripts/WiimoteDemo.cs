@@ -122,14 +122,23 @@ public class WiimoteDemo : MonoBehaviour {
              {
                  
                  waterUI.remainingWater -= 10 * Time.deltaTime;
+                
                  if (target.collider.CompareTag("Enemy"))
                  {
+                    if(waterUI.remainingWater >= 0)
+                    {
                         Debug.Log("isShooting");
-                        target.transform.GetComponent<Enemy>().takedamage(40);
+                        target.transform.GetComponent<Enemy>().takedamage(60);
+                    }
+                        
                  }
                         
                     
                 
+            }
+             if(wiimote.Button.b == false)
+            {
+                waterSound.Play();     
             }
             worldPos = target.point;
             crossHair.transform.position = cam.WorldToScreenPoint(worldPos);
@@ -143,7 +152,7 @@ public class WiimoteDemo : MonoBehaviour {
         }
 
         
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyUp(KeyCode.Space))
         {
             if(canGetWater == true)
             {

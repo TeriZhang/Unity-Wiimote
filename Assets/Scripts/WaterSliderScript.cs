@@ -24,5 +24,12 @@ public class WaterSliderScript : MonoBehaviour
         {
             remainingWater = 100;
         }
+
+        if (remainingWater < 0)
+        {
+            remainingWater = 0;
+        }
     }
+
+    
 }
